@@ -1,0 +1,45 @@
+{% extends "finance/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>{{ request.user.username }}</h2>
+
+    <!-- <button class="btn btn-sm btn-outline-primary" id="account">Account</button> -->
+    <button class="btn btn-sm btn-outline-primary" id="trade">Trade</button>
+    <button class="btn btn-sm btn-outline-primary" id="history">History</button>
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+    <hr>
+
+    <div id="history-view">
+    </div>
+
+    <div id="transaction-view">
+    </div>
+
+    <div id="trade-view">
+        <h3>New Trade</h3>
+        <form id="trade-form">
+            <div class="form-group">
+                Trader: <input disabled class="form-control" id="trade-trader" value="{{ request.user.username }}">
+            </div>
+            <div class="form-group">
+                <label for="type">Type:</label></br>
+                <select id="trade-type" name="type">
+                        <option value="Buy">Buy</option>
+                        <option value="Sell">Sell</option>
+                </select>
+            </div>
+            <div class="form-group">
+                Ticker: <input class="form-control" id="trade-ticker" placeholder="AAPL">
+            </div>
+            <div class="form-group">
+                Quantity: <input class="form-control" id="trade-quantity" >
+            </div>
+            <input type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'finance/finance.js' %}"></script>
+{% endblock %}
